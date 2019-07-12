@@ -1,7 +1,7 @@
 # Get-Environment
 Retrieves environment details relating to integration with PAM from local Windows system.
 
-Retrieve environment, remote desktop configuration, including OS details, version, Network Authentication Level, Security Layer, Secure Boot, NetBIOSName, etc.
+Retrieve environment, remote desktop configuration, including OS version, Network Authentication Level, Security Layer, Secure Boot, NetBIOSName, etc.
 
 ## Install
 1. Download `Get-Environment.ps1`
