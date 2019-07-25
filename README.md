@@ -1,4 +1,4 @@
-# Get-Environment
+# Get-PAMEnvironment
 Retrieves environment details relating to integration with PAM from local Windows system.
 
 Retrieves environment and remote desktop configuration from local system. Includes the OS environment, Network Authentication Level, Security Layer, Secure Boot, NetBIOSName, etc. Also verifies connectivity for AppSSO feature.
