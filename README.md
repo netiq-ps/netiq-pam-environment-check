@@ -5,7 +5,7 @@ Retrieves environment and remote desktop configuration from local system. Includ
 
 ## Install
 1. Download `Get-PAMEnvironment.ps1`
-2. Source `Get-PAMEnvironment` function into Powershell: `. .\PAMGet-Environment.ps1`
+2. Source `Get-PAMEnvironment` function into Powershell: `. .\Get-PAMEnvironment.ps1`
 
 ## Run
 #### Example 1
