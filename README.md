@@ -1,7 +1,7 @@
 # Get-Environment
 Retrieves environment details relating to integration with PAM from local Windows system.
 
-Retrieve environment, remote desktop configuration, including OS version, Network Authentication Level, Security Layer, Secure Boot, NetBIOSName, etc.
+Retrieves environment and remote desktop configuration from local system. Includes the OS environment, Network Authentication Level, Security Layer, Secure Boot, NetBIOSName, etc. Also verifies connectivity for AppSSO feature.
 
 ## Install
 1. Download `Get-Environment.ps1`
@@ -10,7 +10,7 @@ Retrieve environment, remote desktop configuration, including OS version, Networ
 ## Run
 #### Example 1
 ```
-PS > Get-Environment
+PS > Get-Environment -RDP 1
 -------------------------------
 Environment
 -------------------------------
@@ -40,7 +40,19 @@ PS > Get-Environment -Hotfix 1
 ...
 ```
 
-#### Example 3 (output to report)
+#### Example 3 (with AppSSO)
 ```
-PS > Get-Environment *> report.log
+PS > Get-Environment -AppSSO 1
+...
+```
+
+#### Example 4 (with multiple)
+```
+PS > Get-Environment -RDP 1 -AppSSO 1
+...
+```
+
+#### Example 5 (output to report)
+```
+PS > Get-Environment -RDP 1 *> report.log
 ```
