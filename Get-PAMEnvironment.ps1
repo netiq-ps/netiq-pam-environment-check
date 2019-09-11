@@ -64,7 +64,7 @@
 
     Begin {
         $Lines = "-------------------------------`r`n"
-        $Properties = 'PSComputername', 'TerminalProtocol', 'TerminalName',
+        $RDP_ConfigProperties = 'PSComputername', 'TerminalProtocol', 'TerminalName',
         @{L='UserAuthenticationRequired (NLA)';E={[bool]$RDP.UserAuthenticationRequired}},
         'SecurityLayer', 'MinEncryptionLevel'
         
@@ -79,7 +79,9 @@
             ErrorAction = 'Stop'
         }
 
+        $RDP_PORT_PATH = 'HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp'
         $PAM_SL_PATH_RestEndpoint = 'HKLM:\SOFTWARE\Protocom\SecureLogin\RestCredentials'
+
     }
 
     Process {
@@ -113,9 +115,17 @@
         if ($RDP) {
             Try {
                 Write-Output "$Lines RDP`r`n$Lines"
-                $RDPConfig = Get-WMIObject @WMIParams
-                $RDPReport = $RDPConfig | Select-Object $Properties
-                $RDPReport
+                $RDP_Config = Get-WMIObject @WMIParams
+                $RDP_Report = $RDP_Config | Select-Object $RDP_ConfigProperties
+                $RDP_Port = (Get-ItemProperty -PATH $RDP_PORT_PATH).PortNumber
+                $RDP_Listening = Get-NetTCPConnection -State LISTEN -LocalPort $RDP_PORT
+
+                # Consolidate for report
+                $RDP_Report | Add-Member -NotePropertyName "PortNumber" -NotePropertyValue $RDP_PORT
+
+                $RDP_Report
+                $RDP_Listening | Format-Table
+
             } Catch {
                 Write-Error "[RDP] $_"
             }
