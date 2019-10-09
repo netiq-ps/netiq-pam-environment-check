@@ -4,7 +4,7 @@ Retrieves environment details relating to integration with PAM from local Window
 Retrieves environment and remote desktop configuration from local system. Includes the OS environment, Network Authentication Level, Security Layer, Secure Boot, NetBIOSName, etc. Also verifies connectivity for AppSSO feature.
 
 ## Install
-1. Download `Get-PAMEnvironment.ps1`
+1. Download [Get-PAMEnvironment.ps1](https://raw.githubusercontent.com/tdharris/Get-PAMEnvironment/master/Get-PAMEnvironment.ps1)
 2. Source `Get-PAMEnvironment` function into Powershell: `. .\Get-PAMEnvironment.ps1`
 
 ## Run
