@@ -8,7 +8,7 @@ Retrieves environment and remote desktop configuration from local system. Includ
 2. Source `Get-PAMEnvironment` function into Powershell session: `. .\Get-PAMEnvironment.ps1`
 
 ## Run
-#### Example 1
+#### Example 1 - RDP
 ```
 PS > . .\Get-PAMEnvironment.ps1
 PS > Get-PAMEnvironment -RDP 1
@@ -35,28 +35,35 @@ SecurityLayer                    : 1
 MinEncryptionLevel               : 2
 ```
 
-#### Example 2 (with Hotfixes)
+#### Example 2 - OS Hotfixes
 ```
 PS > . .\Get-PAMEnvironment.ps1
 PS > Get-PAMEnvironment -Hotfix 1
 ...
 ```
 
-#### Example 3 (with AppSSO)
+#### Example 3 - AppSSO
 ```
 PS > . .\Get-PAMEnvironment.ps1
 PS > Get-PAMEnvironment -AppSSO 1
 ...
 ```
 
-#### Example 4 (with multiple)
+#### Example 4 - Password Management
+```
+PS > . .\Get-PAMEnvironment.ps1
+PS > Get-PAMEnvironment -PasswordManagement 1
+...
+```
+
+#### Example 5 - Multiple Reports
 ```
 PS > . .\Get-PAMEnvironment.ps1
 PS > Get-PAMEnvironment -RDP 1 -AppSSO 1
 ...
 ```
 
-#### Example 5 (output to report)
+#### Example 6 - Output report to file
 ```
 PS > . .\Get-PAMEnvironment.ps1
 PS > Get-PAMEnvironment -RDP 1 *> report.log

@@ -17,7 +17,11 @@
     .PARAMETER AppSSO
         Verify connectivity with configured PAM server.
 
+    .PARAMETER PasswordManagement
+        Retrieve prerequisite environment configuration.
+
     .EXAMPLE
+        PS > . .\Get-PAMEnvironment.ps1
         PS > Get-PAMEnvironment -RDP 1
         -------------------------------
         Environment
@@ -59,7 +63,14 @@
         Mandatory=$false,
         HelpMessage="AppSSO verification"
       )]
-      [bool]$AppSSO
+      [bool]$AppSSO,
+
+      [Parameter(
+        Mandatory=$false,
+        HelpMessage="Password Management verification"
+      )]
+      [bool]$PasswordManagement
+
     )
 
     Begin {
@@ -163,6 +174,32 @@
                 Get-CertInfoTcp $URI.dnsSafeHost $URI.Port
             } Catch {
                 Write-Error "[AppSSO_Certificate] $_"
+            }
+
+        }
+
+        # Password Management
+        if ($PasswordManagement) {
+            Write-Output "$Lines Password Management`r`n$Lines"
+            
+            
+            Try {
+                # Powershell Version
+                Write-Output "Powershell Version`r`n$Lines" $PSVersiontable.PSVersion
+
+                 # WinRM service
+                 Write-Output "WinRM Service`r`n$Lines"
+                 Get-Service winrm -ErrorAction SilentlyContinue
+
+                 # WinRM config
+                 Write-Output "Client Config:`r`n"
+                 winrm get winrm/config/client
+
+                 # Powershell Execution Policy
+                 Write-Output "PS Execution Policy`r`n$Lines"
+                 Get-ExecutionPolicy
+            } Catch {
+                Write-Error "[Password Management] $_"
             }
 
         }
