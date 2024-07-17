@@ -1,17 +1,26 @@
 # Get-PAMEnvironment
+
 Retrieves environment details relating to integration with PAM from local Windows system.
 
 Retrieves environment and remote desktop configuration from local system. Includes the OS environment, Network Authentication Level, Security Layer, Secure Boot, NetBIOSName, etc. Also verifies connectivity for AppSSO feature.
 
 ## Install
-1. Download [Get-PAMEnvironment.ps1](https://raw.githubusercontent.com/tdharris/Get-PAMEnvironment/master/Get-PAMEnvironment.ps1)
+
+1. Download [Get-PAMEnvironment.ps1](https://github.com/netiq-ps/netiq-pam-environment-check/raw/master/Get-PAMEnvironment.ps1)
 2. Source `Get-PAMEnvironment` function into Powershell session: `. .\Get-PAMEnvironment.ps1`
 
 ## Run
-#### Example 1 - RDP
+
+### Example 1 - RDP
+
+```ps
+. .\Get-PAMEnvironment.ps1
+Get-PAMEnvironment -RDP 1
 ```
-PS > . .\Get-PAMEnvironment.ps1
-PS > Get-PAMEnvironment -RDP 1
+
+Output:
+
+```log
 -------------------------------
 Environment
 -------------------------------
@@ -35,36 +44,37 @@ SecurityLayer                    : 1
 MinEncryptionLevel               : 2
 ```
 
-#### Example 2 - OS Hotfixes
-```
-PS > . .\Get-PAMEnvironment.ps1
-PS > Get-PAMEnvironment -Hotfix 1
-...
+### Example 2 - OS Hotfixes
+
+```ps
+. .\Get-PAMEnvironment.ps1
+Get-PAMEnvironment -Hotfix 1
 ```
 
-#### Example 3 - AppSSO
-```
-PS > . .\Get-PAMEnvironment.ps1
-PS > Get-PAMEnvironment -AppSSO 1
-...
+### Example 3 - AppSSO
+
+```ps
+. .\Get-PAMEnvironment.ps1
+Get-PAMEnvironment -AppSSO 1
 ```
 
-#### Example 4 - Password Management
-```
-PS > . .\Get-PAMEnvironment.ps1
-PS > Get-PAMEnvironment -PasswordManagement 1
-...
+### Example 4 - Password Management
+
+```ps
+. .\Get-PAMEnvironment.ps1
+Get-PAMEnvironment -PasswordManagement 1
 ```
 
-#### Example 5 - Multiple Reports
-```
-PS > . .\Get-PAMEnvironment.ps1
-PS > Get-PAMEnvironment -RDP 1 -AppSSO 1
-...
+### Example 5 - Multiple Reports
+
+```ps
+. .\Get-PAMEnvironment.ps1
+Get-PAMEnvironment -RDP 1 -AppSSO 1
 ```
 
-#### Example 6 - Output report to file
-```
-PS > . .\Get-PAMEnvironment.ps1
-PS > Get-PAMEnvironment -RDP 1 *> report.log
+### Example 6 - Output report to file
+
+```ps
+. .\Get-PAMEnvironment.ps1
+Get-PAMEnvironment -RDP 1 *> report.log
 ```
